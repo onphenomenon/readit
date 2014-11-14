@@ -6,5 +6,5 @@ RSpec.describe Topic, :type => :model do
  it { should have_many(:posts)}
  it { should ensure_length_of(:title).is_at_most(255)}
  it { should ensure_length_of(:description).is_at_most(65535)}
- it { should define_enum_for(:status).with([:active, :inactive, :deleted])}
+ it_behaves_like :acts_as_statusable
 end

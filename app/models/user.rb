@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
-  validates :email, presence: true, uniqueness: true, length: { maximum: 255 } #email: true
-  validates :password, presence: true, confirmation: true, length: {minimum: 5 }
+  validates :email, presence: true, uniqueness: true, length: { maximum: 255 } # email: true
+  validates :password, presence: true, confirmation: true, length: { minimum: 5 }
 end
-
-

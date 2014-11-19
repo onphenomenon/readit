@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+RSpec.describe User, type: :model do
   it { should have_many(:posts) }
   it { should have_many(:favorites) }
   it { should have_many(:comments) }
@@ -23,5 +23,5 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of(:password) }
   it { should validate_confirmation_of(:password) }
   it { should ensure_length_of(:password).is_at_least(5) }
-  it_behaves_like :acts_as_statusable
+  it_behaves_like :acts_as_statusable, :user
 end

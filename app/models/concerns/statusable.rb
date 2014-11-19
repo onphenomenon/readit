@@ -5,7 +5,6 @@ module Statusable
     enum status: [:active, :inactive, :deleted]
     validates :status, presence: true, allow_nil: false
 
-    scope :active, -> { where(status: 0) }
+    scope :active, -> { where(status: :active) }
   end
-
 end

@@ -4,16 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "READIT" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+    <div class="flash alert-box text-center <%= type %>">
+      <%= message %>
+      <a href="#" class='close'>&times;</a>
+    </div>
+    <% end %>
+
+    <header class="row global-header">
+      <div class="small-8 small-centered columns">
+      <%= link_to "Topics", topics_path %>
+     
+      </div>
+    </header>
+
+
+  <div class="row collapse">
+    <div class="small-8 small-centered large-5 columns">
 
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+
+    </div>
+  </div>
+
+  <footer class="row">
+    <div class="small-8 small-centered large-5 columns text-center">
+    
+    </div>
+  </footer>
+    
   </body>
 </html>

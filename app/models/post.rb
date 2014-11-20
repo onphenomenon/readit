@@ -1,3 +1,9 @@
+# Post model
+#
+# == License
+# Code is owned by Kari
+# Fields include id, title, description, rank
+# user_id, post_id, status, created_at, updated_at
 class Post < ActiveRecord::Base
   include Statusable
   belongs_to :topic

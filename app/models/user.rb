@@ -1,3 +1,7 @@
+# User model
+#
+# == License
+# Code is owned by Kari
 class User < ActiveRecord::Base
   include Statusable
   # Include default devise modules. Others available are:
@@ -10,7 +14,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
-  validates :email, presence: true, uniqueness: true, length: { maximum: 255 } # email: true
+  validates(
+   :email,
+   presence: true,
+   uniqueness: true,
+   length: { maximum: 255 }
+   )
   validates(
     :password,
     presence: true,

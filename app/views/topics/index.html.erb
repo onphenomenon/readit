@@ -1,4 +1,17 @@
-<% @topic.each do |t| %>
-<%= t.title %>
+<h2> Topics Index </h2>
+
+<% @topic.each do |topic| %>
+<div  id="<%= dom_id(topic) %>">
+  <%= link_to topic_path(topic), class: "row" do %>
+    <div class="small-10 columns">
+      <h3><%= topic.title %></h3>
+    </div>
+    <div class="small-2 columns">
+      # posts 
+    </div>
+<% end %>
+</div>
 
 <% end %>
+
+<%= link_to "New Topic", new_topic_path %>

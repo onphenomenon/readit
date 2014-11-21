@@ -8,7 +8,7 @@ shared_examples :acts_as_statusable do |factory|
     end
 
     it 'returns only active data' do
-      decribed_class.active.each do |v|
+      described_class.active.each do |v|
         expect(v.status).to eq 'active'
       end
     end

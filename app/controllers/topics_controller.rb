@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topic = Topic.active
+    @topics = Topic.active
   end
 
   def create
@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
 
     if @topic.update_attributes(topic_params)
-      flash[:notice] = 'Topis updated'
+      flash[:notice] = 'Topic updated'
       redirect_to @topic
     else
       flash[:error] = 'Topic not updated'

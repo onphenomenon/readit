@@ -1,0 +1,17 @@
+<h2> Favorites Index </h2>
+
+<% @favorite.each do |favorite| %>
+<div  id="<%= dom_id(favorite) %>">
+  <%= link_to @favorite, class: "row" do %>
+    <div class="small-10 columns">
+      <h3><%= favorite.post_id %></h3>
+    </div>
+    <div class="small-2 columns">
+      # posts 
+    </div>
+<% end %>
+</div>
+
+<% end %>
+
+<%= link_to "Topics", @topic %>

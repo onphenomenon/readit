@@ -7,6 +7,6 @@
 class Topic < ActiveRecord::Base
   include Statusable
   has_many :posts
-  validates :title, length: { maximum: 255 }
+  validates :title, length: { maximum: 255 }, presence: true
   validates :description, length: { maximum: 65_535 }
 end

@@ -1,6 +1,6 @@
 <h2> Topics Index </h2>
 
-<% @topic.each do |topic| %>
+<% @topics.each do |topic| %>
 <div  id="<%= dom_id(topic) %>">
   <%= link_to topic_path(topic), class: "row" do %>
     <div class="small-10 columns">

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def index
+
   end
 
   def new
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @topic = Topic.find(params[:topic_id])
+    @post.user = current_user
     @post.topic = @topic
     if @post.save
       flash[:notice] = 'Post saved'
@@ -26,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  	@post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   	@post.status = :deleted
   	if @post.save
   		flash[:notice] = 'Post saved'
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
   	if @post.update_attributes(post_params)
   		flash[:notice] = 'Post updated'
   		redirect_to [@topic, @post]
-  	else 
+  	else
   		flash[:notice] = 'Update failed'
   		render :edit
   	end

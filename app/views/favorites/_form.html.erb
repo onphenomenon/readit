@@ -1,4 +1,5 @@
 <%= form_for @favorite do |f| %>
 <%= f.select(:post_id, @posts.map{ |v| [v.title, v.id] }) %>
+<%= f.submit 'Save' %>
 <% end %>
 

@@ -1,17 +1,17 @@
 <h2> Favorites Index </h2>
 
-<% @favorite.each do |favorite| %>
+<% @favorites.each do |favorite| %>
 <div  id="<%= dom_id(favorite) %>">
   <%= link_to @favorite, class: "row" do %>
     <div class="small-10 columns">
-      <h3><%= favorite.post_id %></h3>
+      <h3><%= favorite.post.title %></h3>
     </div>
     <div class="small-2 columns">
-      # posts 
+      <h4><%= favorite.post.description %></h4> 
+      <td><%= link_to "Destroy", favorite, method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </div>
 <% end %>
 </div>
 
 <% end %>
 
-<%= link_to "Topics", @topic %>

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
-  resources :favorites
+  resources :favorites # , only: [:index, :create, :new, :show, :destroy]
   resources :comments
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root to: "home#index"
+  root to: 'topics#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -60,3 +60,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov'
 end
+
+gem 'better_errors'

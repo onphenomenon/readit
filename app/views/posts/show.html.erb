@@ -3,10 +3,9 @@
       	<h2><%= @post.title %></h2>
       	<td><%= @post.description %></td>
     </div>
-    <div class="small-6 columns">
-    	<td><%# = link_to "Show", @post %></td>
-    	<td><%= link_to "Edit", edit_topic_post_path(@topic, @post) %></td>
-    	<td><%# = link_to "Destroy", @post, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-    </div>
   <br class="clear" />
 </div>
+<%= render 'comments/form', post: @post %>
+<% @post.comments.each do |comment| %>
+  <div><%= comment.description %></div>
+<% end %>

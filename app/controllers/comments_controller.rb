@@ -1,25 +1,27 @@
 class CommentsController < ApplicationController
   def index
     #question here
-    @comments = current_user.comments.active
-    @post = Post.find(params[:id])
+    #  /posts?topic_id=4
+
   end
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
 
-  if @comment.save
-    flash[:notice] = 'Comment Saved'
-    redirect_to @post
-  else
-    flash[:error] = "Comment not saved"
-    render :new
+    if @comment.save
+      flash[:notice] = 'Comment Saved'
+      redirect_to @comment.post
+    else
+      flash[:error] = "Comment not saved"
+      render :new
+    end
   end
 
   def new
     @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
     @comment.user = current_user
-    @post = Post.find(params[:id])
   end
 
 
@@ -39,7 +41,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  end
+
 
   def edit
     @comment = Comment.find(params[:id])

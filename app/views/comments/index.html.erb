@@ -1,0 +1,9 @@
+<h2> Comments </h2>
+
+<% @comments.each do |comment| %>
+<h4><%= comment.post.title %></h4>
+<h3><%= "#{comment.description} (#{comment.created_at})" %></h3>
+<h4><%= comment.description %></h4>
+
+<% end %>
+

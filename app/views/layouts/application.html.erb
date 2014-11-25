@@ -13,6 +13,39 @@
   </head>
 
   <body>
+  <nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/topics">READIT</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="active"><a href="#">Login</a></li>
+      <li class="has-dropdown">
+        <a href="#">Profile</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+          <li class="active"><a href="#">Active link in dropdown</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li><a href="/topics/9">Hot</a></li>
+      <li><a href="#">New</a></li>
+      <li><a href="/topics/10">Rising</a></li>
+      <li><a href="#">Controversial</a></li>
+      <li><a href="#">Top</a></li>
+    </ul>
+  </section>
+</nav>
+
     <% flash.each do |type, message| %>
     <div class="flash alert-box text-center <%= type %>">
       <%= message %>
@@ -20,16 +53,10 @@
     </div>
     <% end %>
 
-    <header class="row global-header">
-      <div class="small-8 small-centered columns">
-      <%= link_to "Topics", topics_path %>
-     
-      </div>
-    </header>
 
 
-  <div class="row collapse">
-    <div class="small-8 small-centered large-5 columns">
+  <div >
+    <div >
 
     <%= yield %>
 
@@ -38,9 +65,9 @@
 
   <footer class="row">
     <div class="small-8 small-centered large-5 columns text-center">
-    
+
     </div>
   </footer>
-    
+
   </body>
 </html>

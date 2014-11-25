@@ -1,0 +1,10 @@
+<h2> Posts </h2>
+
+<% @posts.each do |post| %>
+<h4><%= post.topic.title %></h4>
+<h3><%= "#{post.title} (#{post.created_at})" %></h3>
+<h4><%= post.description %></h4>
+
+<% end %>
+
+<%= link_to "New Post", new_topic_post_path(@topic) %>

@@ -1,10 +1,13 @@
 class CommentsController < ApplicationController
   def index
+    #question here
     @comments = current_user.comments.active
+    @post = Post.find(params[:id])
   end
 
   def create
     @comment = Comment.new(comment_params)
+
   if @comment.save
     flash[:notice] = 'Comment Saved'
     redirect_to @post
@@ -16,6 +19,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new(comment_params)
     @comment.user = current_user
+    @post = Post.find(params[:id])
   end
 
 
@@ -31,7 +35,7 @@ class CommentsController < ApplicationController
       redirect_to @post
     else
       flash[:error] = "Comment not deleted"
-      redired_to comment_path
+      redirect_to comment_path
     end
   end
 
@@ -39,8 +43,6 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
-
-
   end
 
   def update
@@ -50,7 +52,7 @@ class CommentsController < ApplicationController
 private
 
 def comment_params
-  params.require(:comment).permit(:post_id, :user_id)
+  params.require(:comment).permit(:post_id, :description)
 end
 
 end

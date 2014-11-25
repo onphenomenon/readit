@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
-
+    @posts = Post.active.order(created_at: :desc)
+    @topic = Topic.find(params[:topic_id])
   end
 
   def new
@@ -29,9 +30,9 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-  	@post.status = :deleted
-  	if @post.save
-  		flash[:notice] = 'Post saved'
+    @post.status = :deleted
+    if @post.save
+      flash[:notice] = 'Post saved'
   		redirect_to topic_posts_path
   	else
   		flash[:error] = 'Post delete failed'

@@ -4,13 +4,13 @@
       	<h4><%= @topic.description %></h4>
 
         <h5><%= link_to "New Post", new_topic_post_path(@topic) %></h5>
-
+        <h5><%= link_to "All Topics", topics_path %></h5>
     </div>
     <div class="small-6 columns">
     	<% @posts.each do |post| %>
-        <h3><%= link_to "#{post.title}", topic_post_path(@topic, post) %></h3>
+        <h3><%= link_to post.title, topic_post_path(@topic, post) %></h3>
 
-        <h5><%= "#{post.created_at.strftime("%d %b. %Y")}" %></h5>
+        <h5><%= post.created_at.strftime("%d %b. %Y") %></h5>
         <h4><%= post.description %></h4>
 
           <% end %>

@@ -4,8 +4,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
 
-
-
     if @comment.save
       flash[:notice] = 'Comment Saved'
       redirect_to @comment.post

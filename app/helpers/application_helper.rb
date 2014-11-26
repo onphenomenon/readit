@@ -7,4 +7,13 @@ module ApplicationHelper
 
     links.html_safe
   end
+
+  def error_msg(object)
+    add = ''
+    object.errors.full_messages.each do |msg|
+    add += "</li>#{ msg }</li>"
+    end
+
+    add.html_safe
+  end
 end

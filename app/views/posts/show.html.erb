@@ -5,7 +5,8 @@
     </div>
   <br class="clear" />
 </div>
+<h3>Add Comment</h3>
 <%= render 'comments/form', post: @post %>
 <% @post.comments.each do |comment| %>
-  <div><%= comment.description %></div>
+  <div><%= comment.description %><%= link_to "delete comment", comment, method: :delete, data: {confirm: 'Are you sure?'} %>
 <% end %>

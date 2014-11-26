@@ -1,4 +1,10 @@
-<% form_for [@topic, @post] do |f| %>
+<div class="row error">
+  <div class="small-12 text-center columns">
+      <div class="alert-box" style="background:red"><%= error_msg(@post) %></div>
+  </div>
+</div>
+<h3>New Post for <%= @topic.title %></h3>
+<%= form_for [@topic, @post] do |f| %>
 <%= f.label :title %>
 <%= f.text_field :title %>
 <%= f.label :description %>

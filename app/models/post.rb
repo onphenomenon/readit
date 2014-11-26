@@ -11,5 +11,5 @@ class Post < ActiveRecord::Base
   has_many :comments
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 65_535 }
-  validates :rank, numericality: true
+  #validates :rank, numericality: true
 end

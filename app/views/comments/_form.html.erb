@@ -1,6 +1,11 @@
+<div class="row error">
+  <div class="small-12 text-center columns">
+      <div class="alert-box alert"><%= error_msg(@comment) %></div>
+  </div>
+</div>
 <%= form_for @comment do |f| %>
-<input type="hidden" name="comment[post_id]" value="<%= post.id %>">
-<%= post.title %>
+<%= f.label :post_id %>
+<%= f.text_area :post_id %>
 <%= f.label :description %>
 <%= f.text_area :description %>
 <%= f.submit 'Save' %>

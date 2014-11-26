@@ -7,15 +7,17 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @topic = Topic.find(params[:topic_id])
   end
 
   def create
     @post = Post.new(post_params)
     @post.user = current_user
     @post.topic_id = params[:topic_id]
+    @topic = Topic.find(params[:topic_id])
     if @post.save
       flash[:notice] = 'Post saved'
-      redirect_to @post
+      redirect_to @topic
     else
       flash[:error] = 'Post not created'
       render :new
@@ -28,7 +30,7 @@ class PostsController < ApplicationController
     end
 
     # implies /topic/X/posts/Y
-    @comments = @post.comments
+    @comments = @post.comments.active
     @comment = Comment.new
   end
 

@@ -24,3 +24,6 @@ th { border-bottom: 1px solid #DDD; }
   background-color: red;
   font-size: 13px;
 }
+.comment {
+  margin: 5px;
+}

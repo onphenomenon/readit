@@ -4,9 +4,8 @@
   </div>
 </div>
 <%= form_for @comment do |f| %>
-<%= f.label :post_id %>
-<%= f.text_area :post_id %>
-<%= f.label :description %>
-<%= f.text_area :description %>
-<%= f.submit 'Save' %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.submit 'Save' %>
 <% end %>

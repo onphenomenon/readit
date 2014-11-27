@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
-  resources :posts
+  resources :votes
+
   resources :favorites # , only: [:index, :create, :new, :show, :destroy]
   resources :comments, except: [:index]
   # You can have the root of your site routed with "root"

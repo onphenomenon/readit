@@ -1,12 +1,36 @@
 <div  class="row" id="<%= dom_id(@post) %>">
-    <div class="small-6 columns">
-      	<h2><%= @post.title %></h2>
-      	<td><%= @post.description %></td>
+    <div class="small-4 columns">
+    <%= link_to "Topic", topic_path(@post.topic) %>
+    	<h2><%= @post.title %></h2>
+    	<td><%= @post.description %></td>
+      <%= form_for Vote.new do |f| %>
+        <%= f.hidden_field :upordown, value: "up" %>
+        <!-- <input type="hidden" name="vote[upordown]" > /-->
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.submit value: 'up' %>
+      <%- end -%>
+      <%= @score %>
+        <% if @post.user == current_user %>
+        <h5><%= link_to "Edit", edit_topic_post_path(@post.topic, @post) %></h5>
+        <h5><%= link_to "Destroy", destroy_topic_post_path([@post.topic, @post]), method: :delete, data: {confirm: 'Are you sure?'} %></h5>
+        <% end %>
     </div>
-  <br class="clear" />
+    <div class="small-8 columns">
+      <% @comments.each do |comment| %>
+        <div class="comment"><%= comment.description %></br><%= link_to "delete", comment, method: :delete, data: {confirm: 'Are you sure?'} %></div>
+      <% end %>
+    </div>
+
+
+
 </div>
-<h3>Add Comment</h3>
-<%= render 'comments/form', post: @post %>
-<% @post.comments.each do |comment| %>
-  <div><%= comment.description %><%= link_to "delete comment", comment, method: :delete, data: {confirm: 'Are you sure?'} %>
-<% end %>
+<div class="row">
+  <div class="small-10 centered columns">
+      <h3>Add Comment</h3>
+      <%= render 'comments/form', post: @post %>
+    </div>
+    <br class="clear" />
+</div>
+
+
+

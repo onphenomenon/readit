@@ -1,16 +1,18 @@
 class VotesController < ApplicationController
 
   def create
-    @vote = Vote.new(votes)
-    @post = Post.find(params[:post_id])
-    @vote.user = current_user
-    @vote.post = @post
-  end
-  def new
-    @vote = Vote.new(vote_params)
-  end
+    @post = Post.find(params[:vote][:post_id])
+    @vote = Vote.new user: current_user, post: @post
 
-  def destroy #downvote??
+    if params[:vote][:upordown] == 'up'
+      @vote.value = 1
+    elsif params[:vote][:upordown] == 'down'
+      @vote.value = -1
+    end
+
+    @vote.save
+
+    redirect_to @post
   end
 
   private

@@ -7,18 +7,11 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-    if @topic.save
-      flash[:notice] = 'Topic saved'
-      redirect_to @topic
-    else
-      flash[:error] = 'Topic not created'
-      render :new
-    end
+    my_save(@topic, topics_path)
   end
 
   def new
     @topic = Topic.new
-
   end
 
   def show
@@ -27,14 +20,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic.status = :deleted
-    if @topic.save
-      flash[:notice] = 'Topic deleted'
-      redirect_to topics_path
-    else
-      flash[:error] = 'Topic delete failed'
-      render :show
-    end
+    my_destroy(@topic, topics_path)
   end
 
   def edit

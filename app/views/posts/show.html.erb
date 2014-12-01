@@ -12,7 +12,7 @@
       <%= @score %>
         <% if @post.user == current_user %>
         <h5><%= link_to "Edit", edit_topic_post_path(@post.topic, @post) %></h5>
-        <h5><%= link_to "Destroy", destroy_topic_post_path([@post.topic, @post]), method: :delete, data: {confirm: 'Are you sure?'} %></h5>
+        <h5><%= link_to "Destroy", [@post.topic, @post], method: :delete, data: {confirm: 'Are you sure?'} %></h5>
         <% end %>
     </div>
     <div class="small-8 columns">
@@ -21,9 +21,6 @@
       <% end %>
     </div>
 
-
-
-</div>
 <div class="row">
   <div class="small-10 centered columns">
       <h3>Add Comment</h3>

@@ -1,6 +1,7 @@
 <div title="show-topics" class="row">
     <div class="small-6 columns">
       	<h2><%= @topic.title %></h2>
+        <%= crud_links(@topic) %>
       	<h4><%= @topic.description %></h4>
 
         <h5><%= link_to "New Post", new_topic_post_path(@topic) %></h5>

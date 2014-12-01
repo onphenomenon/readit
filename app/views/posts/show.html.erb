@@ -1,5 +1,5 @@
-<div  class="row" id="<%= dom_id(@post) %>">
-    <div class="small-6 columns">
+<div class="row">
+    <div class="small-4 small-offset-3 columns">
     <%= link_to "Topic", topic_path(@post.topic) %>
     	<h2><%= @post.title %></h2>
     	<td><%= @post.description %></td>
@@ -17,22 +17,30 @@
       <%- end -%>
       <%= @score %>
     </div>
+</div>
 
-
-
-    <div class="small-6 columns">
+<div style="border-top-style: dotted"></div>
+  <div class="row">
+    <div class="small-10 small-offset-3 columns">
+      <h5>Comments <%= @comments.count%></h5>
+      <div class="comments" id="comment_scroll">
       <% @comments.each do |comment| %>
+        <h5><%= comment.user.email %></h5>
         <div class="comment"><%= comment.description %></div>
         <% if @comment.user == current_user || @post.user == current_user %>
         <li class="button tiny secondary"><%= link_to "delete", comment, method: :delete, data: {confirm: 'Are you sure?'} %></li>
         <% end %>
       <% end %>
+      </div>
     </div>
+  </div>
 
+<div style="border-top-style: dotted"></div>
 <div class="row">
-  <div class="small-10 centered columns">
+  <div class="small-10 small-offset-3 centered columns">
+
       <h3>Add Comment</h3>
-      <%= render 'comments/form', post: @post %>
+      <%= link_to "New Comment", new_comment_path(:post_id => @post.id), id: "new_comment_link", remote: true %>
     </div>
     <br class="clear" />
 </div>

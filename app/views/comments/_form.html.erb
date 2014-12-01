@@ -3,8 +3,8 @@
       <div class="alert-box alert"><%= error_msg(@comment) %></div>
   </div>
 </div>
-<%= form_for @comment do |f| %>
-  <%= f.hidden_field :post_id, value: post.id %>
+<%= form_for @comment, remote: true do |f| %>
+  <%= f.hidden_field :post_id, value: @comment.post_id %>
   <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.submit 'Save' %>

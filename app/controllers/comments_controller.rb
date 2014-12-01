@@ -1,13 +1,19 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.create!(comment_params)
     @comment.user = current_user
-    my_save(@comment, topic_post_path(@comment.topic, @comment.post))
+    # respond_to do |format|
+    # format.html { redirect_to topic_post_path(@comment.post.topic, @comment.post) }
+    # format.js
+    # end
+
+    # my_save(@comment, topic_post_path(@comment.post.topic, @comment.post))
+    redirect_to topic_post_path(@comment.post.topic, @comment.post)
   end
 
   def new
     @comment = Comment.new
-    @post = Post.find(params[:post_id])
+    @comment.post_id = params[:post_id]
   end
 
   def destroy

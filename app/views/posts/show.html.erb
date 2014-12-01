@@ -1,8 +1,14 @@
 <div  class="row" id="<%= dom_id(@post) %>">
-    <div class="small-4 columns">
+    <div class="small-6 columns">
     <%= link_to "Topic", topic_path(@post.topic) %>
     	<h2><%= @post.title %></h2>
     	<td><%= @post.description %></td>
+      <% if @post.user == current_user %>
+      <ul class="button-group [tiny secondary]">
+        <li class="button tiny secondary"><%= link_to "Edit", edit_topic_post_path(@post.topic, @post) %></li>
+        <li class="button tiny secondary"><%= link_to "Destroy", [@post.topic, @post], method: :delete, data: {confirm: 'Are you sure?'} %></li>
+      </ul>
+     <% end %>
       <%= form_for Vote.new do |f| %>
         <%= f.hidden_field :upordown, value: "up" %>
         <!-- <input type="hidden" name="vote[upordown]" > /-->
@@ -10,14 +16,16 @@
         <%= f.submit value: 'up' %>
       <%- end -%>
       <%= @score %>
-        <% if @post.user == current_user %>
-        <h5><%= link_to "Edit", edit_topic_post_path(@post.topic, @post) %></h5>
-        <h5><%= link_to "Destroy", [@post.topic, @post], method: :delete, data: {confirm: 'Are you sure?'} %></h5>
-        <% end %>
     </div>
-    <div class="small-8 columns">
+
+
+
+    <div class="small-6 columns">
       <% @comments.each do |comment| %>
-        <div class="comment"><%= comment.description %></br><%= link_to "delete", comment, method: :delete, data: {confirm: 'Are you sure?'} %></div>
+        <div class="comment"><%= comment.description %></div>
+        <% if @comment.user == current_user || @post.user == current_user %>
+        <li class="button tiny secondary"><%= link_to "delete", comment, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+        <% end %>
       <% end %>
     </div>
 

@@ -42,10 +42,10 @@ class PostsController < ApplicationController
   def update
     if @post.update_attributes(post_params)
       flash[:notice] = 'Post updated'
-      redirect_to [@topic, @post]
+      redirect_to topic_post_path(@post.topic, @post)
     else
       flash[:notice] = 'Update failed'
-      render :edit
+      redirect_to topic_post_path(@post.topic, @post)
     end
   end
 

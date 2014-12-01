@@ -1,4 +1,5 @@
-<h4 class="model-title"> Topics <%= link_to "New Topic", new_topic_path %></h4>
+<h4 class="model-title"> Topics </h4>
+
 
 <div class="row">
 <% @topics.each do |topic| %>
@@ -14,6 +15,7 @@
 
 <% end %>
 </div>
+<div class="button success radius"><%= link_to "New Topic", new_topic_path %></div>
 
 
 

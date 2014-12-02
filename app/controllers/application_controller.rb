@@ -30,4 +30,14 @@ class ApplicationController < ActionController::Base
       redirect_to error_redirect
     end
   end
+
+  def my_update(object, success_redirect, error_render)
+    if object.update_attributes(topic_params)
+      flash[:notice] = "#{object.class} updated"
+      redirect_to success_redirect
+    else
+      flash[:error] = "#{object.class} not updated"
+      render error_render
+    end
+  end
 end

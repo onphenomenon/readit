@@ -40,13 +40,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(post_params)
-      flash[:notice] = 'Post updated'
-      redirect_to topic_post_path(@post.topic, @post)
-    else
-      flash[:notice] = 'Update failed'
-      redirect_to topic_post_path(@post.topic, @post)
-    end
+    my_update(@post, topic_post_path(@post.topic, @post), topic_post_path(@post.topic, @post))
   end
 
   private

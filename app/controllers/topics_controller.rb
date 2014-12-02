@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :user_is_admin, only: [:new, :create, :destroy, :edit, :update]
   before_action :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
-  before_action :set_topic, only: [:show, :destroy, :edit, :update]
+  before_action :get_topic, only: [:show, :destroy, :edit, :update]
 
   def index
     @topics = Topic.active
@@ -29,13 +29,7 @@ class TopicsController < ApplicationController
   end
 
   def update
-    if @topic.update_attributes(topic_params)
-      flash[:notice] = 'Topic updated'
-      redirect_to @topic
-    else
-      flash[:error] = 'Topic not updated'
-      render :edit
-    end
+    my_update(@topic, @topic, :edit)
   end
 
   private
@@ -44,7 +38,7 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:title, :description)
   end
 
-  def set_topic
+  def get_topic
     @topic = Topic.where(id: params[:id]).first
     if @topic == nil
       flash[:error] = "Topic does not exist"

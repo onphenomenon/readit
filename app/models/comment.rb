@@ -11,4 +11,5 @@ class Comment < ActiveRecord::Base
   has_one :topic, through: :post
   validates :description, length: { maximum: 65_535 }
   validates :user_id, presence: true
+  validates :post_id, presence: true
 end

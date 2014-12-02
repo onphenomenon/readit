@@ -5,13 +5,6 @@
     	<td><%= @post.description %></td>
       <%= crud_post(@post) %>
 
-    <% if user_signed_in? && current_user.favorites != @post.id %>
-     <%= form_for Favorite.new do |f| %>
-       <%= f.hidden_field :fav_save, value: "save" %>
-       <%= f.hidden_field :post_id, value: @post.id %>
-       <%= f.submit value: 'Save to Favorites' %>
-      <%- end -%>
-    <%- end -%>
 
       <%= form_for Vote.new do |f| %>
         <%= f.hidden_field :upordown, value: "up" %>
@@ -31,7 +24,7 @@
       <% @comments.each do |comment| %>
         <h5><%= comment.user.email %></h5>
         <div class="comment"><%= comment.description %></div>
-        <%= crud_comment %>
+        <%= crud_comment(comment) %>
       <% end %>
       </div>
     </div>

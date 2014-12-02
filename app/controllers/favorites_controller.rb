@@ -1,21 +1,22 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
+  before_action :params_exist
 
   def index
+
     @favorites = current_user.favorites.active
   end
 
   def create
-    @post = Post.find(params[:favorite][:post_id])
+    # binding.pry
+    @post = Post.find(favorite_params)
     @favorite = Favorite.new user: current_user, post: @post
-    @favorite.save
-    flash[:notice] = 'Post added to Favorites'
-    redirect_to topic_post_path(@post.topic, @post)
+    my_save(@favorite, topic_post_path(@post.topic, @post), topic_post_path(@post.topic, @post))
   end
 
 
   def show
-    @favorite = Favorite.find(params[:id])
+    @favorite = current_user.favorites.where(favorites: {id: params[:id] }).first
   end
 
   def destroy
@@ -24,6 +25,11 @@ class FavoritesController < ApplicationController
   end
 
   private
+
+  def params_exist
+    # binding.pry
+    redirect_to topics_path if params.nil? || params[:favorite].nil?
+  end
 
   def favorite_params
     params.require(:favorite).permit(:post_id)

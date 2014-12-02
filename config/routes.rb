@@ -7,14 +7,16 @@ Rails.application.routes.draw do
   end
   resources :votes
 
-  resources :favorites # , only: [:index, :create, :new, :show, :destroy]
+  # resources :favorites # , only: [:index, :create, :new, :show, :destroy]
   resources :comments, except: [:index]
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root to: 'topics#index'
+  get '/favorites/create', to: 'favorites#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-
+  get '/users/comments', to: 'users#comments'
+  get '/users/posts', to: 'users#posts'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

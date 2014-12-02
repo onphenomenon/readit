@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :votes
+  has_many :favorites
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 65_535 }
   # validates :rank, numericality: true

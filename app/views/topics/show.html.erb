@@ -1,15 +1,22 @@
 <div title="show-topics" class="row">
     <div class="small-6 columns">
       	<h2><%= @topic.title %></h2>
-        <%= crud_links(@topic) %>
       	<h4><%= @topic.description %></h4>
+        <%= crud_links(@topic) %>
 
         <h5><%= link_to "New Post", new_topic_post_path(@topic) %></h5>
         <h5><%= link_to "All Topics", topics_path %></h5>
     </div>
     <div class="small-6 columns">
+
     	<% @posts.each do |post| %>
         <h3><%= link_to post.title, topic_post_path(@topic, post) %></h3>
+
+        <%= form_for Favorite.new do |f| %>
+         <%= f.hidden_field :fav_save, value: "save" %>
+         <%= f.hidden_field :post_id, value: post.id %>
+         <%= f.submit value: 'Save to Favorites' %>
+        <%- end -%>
 
         <h5><%= post.created_at.strftime("%d %b. %Y") %></h5>
         <h4><%= post.description %></h4>

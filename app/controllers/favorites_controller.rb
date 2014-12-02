@@ -6,15 +6,13 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = Favorite.new(favorite_params)
-    @favorite.user = current_user
-    my_save(@favorite, favorites_path)
+    @post = Post.find(params[:favorite][:post_id])
+    @favorite = Favorite.new user: current_user, post: @post
+    @favorite.save
+    flash[:notice] = 'Post added to Favorites'
+    redirect_to topic_post_path(@post.topic, @post)
   end
 
-  def new
-    @favorite = Favorite.new
-    @posts = Post.active
-  end
 
   def show
     @favorite = Favorite.find(params[:id])

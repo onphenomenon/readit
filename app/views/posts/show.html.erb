@@ -3,12 +3,16 @@
     <%= link_to "Topic", topic_path(@post.topic) %>
     	<h2><%= @post.title %></h2>
     	<td><%= @post.description %></td>
-      <% if @post.user == current_user %>
-      <ul class="button-group [tiny secondary]">
-        <li class="button tiny secondary"><%= link_to "Edit", edit_topic_post_path(@post.topic, @post) %></li>
-        <li class="button tiny secondary"><%= link_to "Destroy", [@post.topic, @post], method: :delete, data: {confirm: 'Are you sure?'} %></li>
-      </ul>
-     <% end %>
+      <%= crud_post(@post) %>
+
+    <% if user_signed_in? && current_user.favorites != @post.id %>
+     <%= form_for Favorite.new do |f| %>
+       <%= f.hidden_field :fav_save, value: "save" %>
+       <%= f.hidden_field :post_id, value: @post.id %>
+       <%= f.submit value: 'Save to Favorites' %>
+      <%- end -%>
+    <%- end -%>
+
       <%= form_for Vote.new do |f| %>
         <%= f.hidden_field :upordown, value: "up" %>
         <!-- <input type="hidden" name="vote[upordown]" > /-->
@@ -27,9 +31,7 @@
       <% @comments.each do |comment| %>
         <h5><%= comment.user.email %></h5>
         <div class="comment"><%= comment.description %></div>
-        <% if @comment.user == current_user || @post.user == current_user %>
-        <li class="button tiny secondary"><%= link_to "delete", comment, method: :delete, data: {confirm: 'Are you sure?'} %></li>
-        <% end %>
+        <%= crud_comment %>
       <% end %>
       </div>
     </div>

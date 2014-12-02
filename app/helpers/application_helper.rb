@@ -1,12 +1,4 @@
 module ApplicationHelper
-  def crud_links(object)
-    links = ''
-    links += "<td>#{ link_to 'Show', object}</td> "
-    links += "<td>#{ link_to 'Edit', [:edit, object]}</td> "
-    links += "<td>#{link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' }}</td>"
-
-    links.html_safe
-  end
 
   def error_msg(object)
     add = ''
@@ -14,5 +6,13 @@ module ApplicationHelper
       add += "<tr>#{msg}</tr>"
     end
     add.html_safe
+  end
+
+  def favorite_form
+    form_for Favorite.new do |f|
+      f.hidden_field :fav_save, value: "save"
+      f.hidden_field :post_id, value: @post.id
+      f.submit value: 'Save to Favorites'
+    end
   end
 end

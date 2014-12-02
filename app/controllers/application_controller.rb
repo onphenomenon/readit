@@ -10,24 +10,24 @@ class ApplicationController < ActionController::Base
     @topics = Topic.active
   end
 
-  def my_destroy(object, redirect)
+  def my_destroy(object, success_redirect, error_redirect)
     object.status = :deleted
     if object.save
       flash[:notice] = "#{object.class} deleted"
-      redirect_to redirect
+      redirect_to success_redirect
     else
-      flash[:error] = '#{object.class} delete failed'
-      redirect_to redirect
+      flash[:error] = "#{object.class} delete failed"
+      redirect_to error_redirect
     end
   end
 
-  def my_save(object, redirect)
+  def my_save(object, success_redirect, error_redirect)
     if object.save
       flash[:notice] = "#{object.class} saved"
-      redirect_to redirect
+      redirect_to success_redirect
     else
       flash[:error] = "#{object.class} not saved"
-      redirect_to redirect
+      redirect_to error_redirect
     end
   end
 end

@@ -7,6 +7,17 @@ module PostsHelper
     end
   end
 
+  def vote_link(post)
+    return unless current_user
+    return unless current_user.votes.where(post_id: post.id).empty?
+    links = ''
+    links += "<ul class='button-group [tiny secondary]'>"
+    links += "<li class='button tiny secondary'>#{ link_to 'Up', votes_up_path(vote: { post_id: post.id }) }"
+    links += "<li class='button tiny secondary'>#{ link_to 'Down', votes_down_path(vote: { post_id: post.id }) }"
+    links += "</ul>"
+    links.html_safe
+  end
+
   def fav_link(post)
     return unless current_user
     return unless current_user.favorites.where(post_id: post.id).empty?

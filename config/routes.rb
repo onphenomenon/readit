@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
-  resources :votes
+  # resources :votes
+  get '/votes/up', to: 'votes#up'
+  get '/votes/down', to: 'votes#down'
 
   # resources :favorites # , only: [:index, :create, :new, :show, :destroy]
   resources :comments, except: [:index]

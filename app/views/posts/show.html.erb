@@ -4,15 +4,8 @@
     	<h2><%= @post.title %></h2>
     	<td><%= @post.description %></td>
       <%= crud_post(@post) %>
+      <%= vote_link(@post) %>
 
-
-      <%= form_for Vote.new do |f| %>
-        <%= f.hidden_field :upordown, value: "up" %>
-        <!-- <input type="hidden" name="vote[upordown]" > /-->
-        <%= f.hidden_field :post_id, value: @post.id %>
-        <%= f.submit value: 'up' %>
-      <%- end -%>
-      <%= @score %>
     </div>
 </div>
 

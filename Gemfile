@@ -45,7 +45,8 @@ end
 gem 'devise'
 
 # Handle uploads
-# gem 'carrierwave'
+gem 'carrierwave'
+
 
 group :development, :test do
   gem 'pry'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203204354) do
+ActiveRecord::Schema.define(version: 20141204011008) do
 
   create_table "comments", force: true do |t|
     t.text     "description"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20141203204354) do
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "posts", ["status"], name: "index_posts_on_status", using: :btree
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20141203204354) do
     t.integer  "status",      limit: 1, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "topics", ["status"], name: "index_topics_on_status", using: :btree

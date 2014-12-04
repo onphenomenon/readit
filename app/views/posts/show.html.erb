@@ -2,6 +2,7 @@
     <div class="small-4 small-offset-3 columns">
     <%= link_to "Topic", topic_path(@post.topic) %>
     	<h2><%= @post.title %></h2>
+      <%= image_tag @post.image_url.to_s %>
     	<td><%= @post.description %></td>
       <%= crud_post(@post) %>
       <%= vote_link(@post) %>

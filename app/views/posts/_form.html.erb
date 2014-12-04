@@ -4,10 +4,12 @@
   </div>
 </div>
 <h3>New Post for <%= @topic.title %></h3>
-<%= form_for [@topic, @post] do |f| %>
+<%= form_for [@topic, @post], :html => {:multipart => true} do |f| %>
 <%= f.label :title %>
 <%= f.text_field :title %>
 <%= f.label :description %>
 <%= f.text_area :description %>
+<%= f.file_field :image %>
+<%= f.hidden_field :image_cache %>
 <%= f.submit 'Save' %>
 <% end %>

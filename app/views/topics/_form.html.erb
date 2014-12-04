@@ -3,11 +3,12 @@
       <div class="alert-box alert round" ><%= error_msg(@topic) %></div>
   </div>
 </div>
-<%= form_for @topic do |f| %>
+<%= form_for @topic, :html => {:multipart => true} do |f| %>
   <%= f.label :title%>
   <%= f.text_field :title %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+  <%= f.file_field :image %>
   <%= f.submit 'Save' %>
 <% end %>
 

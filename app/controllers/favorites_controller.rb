@@ -8,10 +8,9 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    # binding.pry
-    @post = Post.find(favorite_params)
+    @post = Post.find(favorite_params[:post_id])
     @favorite = Favorite.new user: current_user, post: @post
-    my_save(@favorite, topic_post_path(@post.topic, @post), topic_post_path(@post.topic, @post))
+    my_save(@favorite, topic_post_path(@post.topic, @post))
   end
 
 

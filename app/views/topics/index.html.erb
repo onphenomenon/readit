@@ -1,21 +1,31 @@
-<h4 class="model-title"> Topics </h4>
+<div class="row show-topics">
+  <div class="small-10 columns small-centered">
+    <section class="row">
+        <h4 class="model-title"> Topics </h4>
 
-<% @topics.each do |topic| %>
-<div class="row">
-     <div class="small-4 columns">
-     <%= link_to topic.title, topic_path(topic) %>
-      </div>
-      <div class="small-4 columns">
-       <%= topic.posts.count %>
-      </div>
-     <div class="small-4 columns">
-      <%= crud_links(topic) %>
-     </div>
+
+        <div class="row">
+        <% @topics.each do |topic| %>
+             <div class="small-4 columns">
+             <%= link_to topic.title, topic_path(topic) %>
+              </div>
+              <div class="small-4 columns">
+                <%= topic.posts.count %> posts
+              </div>
+             <div class="small-4 columns">
+              <%= crud_links(topic) %>
+             </div>
+          <% end %>
+          <%= topic_link() %>
+        </div>
+    </section>
+  </div>
 </div>
 
-<% end %>
 
-<div class="button success radius"><%= link_to "New Topic", new_topic_path %></div>
+
+
+
 
 
 

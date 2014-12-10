@@ -7,37 +7,38 @@ class ApplicationController < ActionController::Base
   private
 
   def set_topics
-    @topics = Topic.active
+    @menu_topics = Topic.active.limit(7)
+
   end
 
-  def my_destroy(object, success_redirect, error_redirect)
+  def my_destroy(object, success_redirect)
     object.status = :deleted
     if object.save
       flash[:notice] = "#{object.class} deleted"
       redirect_to success_redirect
     else
       flash[:error] = "#{object.class} delete failed"
-      redirect_to error_redirect
+      render :show
     end
   end
 
-  def my_save(object, success_redirect, error_redirect)
+  def my_save(object, success_redirect)
     if object.save
       flash[:notice] = "#{object.class} saved"
-      redirect_to success_redirect
+      redirect_to success_redirect if success_redirect
     else
       flash[:error] = "#{object.class} not saved"
-      redirect_to error_redirect
+      render :new
     end
   end
 
-  def my_update(object, success_redirect, error_render)
-    if object.update_attributes(topic_params)
+  def my_update(object, object_params, success_redirect)
+    if object.update_attributes(object_params)
       flash[:notice] = "#{object.class} updated"
       redirect_to success_redirect
     else
       flash[:error] = "#{object.class} not updated"
-      render error_render
+      render :edit
     end
   end
 end

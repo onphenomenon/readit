@@ -16,8 +16,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @topic = Topic.find(params[:topic_id])
     @post.topic_id = params[:topic_id]
-    my_save(@post, topic_path(@post.topic), new_topic_post_path)
+    my_save(@post, topic_path(@post.topic))
   end
 
   def show
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    my_destroy(@post, topic_path(@post.topic), topic_post_path)
+    my_destroy(@post, topic_path(@post.topic))
   end
 
   def edit
@@ -40,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    my_update(@post, topic_post_path(@post.topic, @post), topic_post_path(@post.topic, @post))
+    my_update(@post, post_params, topic_post_path(@post.topic, @post))
   end
 
   private

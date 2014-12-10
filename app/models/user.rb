@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
     length: { minimum: 5 }
   )
   def is_admin?
-    return true if self == User.find(2)
-    false
+    self == User.find(2)
   end
 end

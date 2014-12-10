@@ -1,22 +1,30 @@
-<div title="show-topics" class="row">
-    <div class="small-6 columns">
-      	<h2><%= @topic.title %></h2>
-      	<h4><%= @topic.description %></h4>
-        <%= image_tag @topic.image_url.to_s %>
-        <%= crud_links(@topic) %>
+<div class="row show-topics">
+  <div class="small-10 columns small-centered">
+    <section class="row">
+      <div class="small-6 columns">
+        	<h2><%= @topic.title %></h2>
 
-        <h5><%= link_to "New Post", new_topic_post_path(@topic) %></h5>
-        <h5><%= link_to "All Topics", topics_path %></h5>
-    </div>
-    <div class="small-6 columns">
+        	<h4><%= @topic.description %></h4>
+          <%= image_tag @topic.image_url.to_s %>
+          <%= crud_links(@topic) %>
 
-    	<% @posts.each do |post| %>
-        <h3><%= link_to post.title, topic_post_path(@topic, post) %></h3>
-
-        <h5><%= post.created_at.strftime("%d %b. %Y") %></h5>
-        <h4><%= post.description %></h4>
-
-          <% end %>
+          <h5><%= new_post(@topic) %></h5>
+          <h5><%= link_to "All Topics", topics_path %></h5>
       </div>
+      <div class="small-6 columns">
+
+      	<% @posts.each do |post| %>
+        <%= post.rank.to_i %>Rank
+          <h3><%= link_to post.title, topic_post_path(@topic, post) %></h3>
+
+          <h5><%= post.created_at.strftime("%d %b. %Y") %></h5>
+          <h4><%= post.description %></h4>
+
+            <% end %>
+        <%= will_paginate @posts %>
+      </div>
+    </section>
+  </div>
   <br class="clear" />
+
 </div>

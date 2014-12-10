@@ -15,7 +15,7 @@
  *= require foundation_and_overrides
 
  */
-body { padding-top: 100px; }
+
 footer { margin-top: 100px; }
 table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
@@ -26,4 +26,7 @@ th { border-bottom: 1px solid #DDD; }
 }
 .comment {
   margin: 5px;
+}
+.show-topics {
+  padding: 5%;
 }

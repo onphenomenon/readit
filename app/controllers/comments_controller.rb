@@ -4,13 +4,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
-    # respond_to do |format|
-    # format.html { redirect_to topic_post_path(@comment.post.topic, @comment.post) }
-    # format.js
-    # end
-    # my_save(@comment, topic_post_path(@comment.post.topic, @comment.post))
-    my_save(@comment, topic_post_path(@comment.post.topic, @comment.post), topic_post_path(@comment.post.topic, @comment.post))
-
+    my_save(@comment, nil)
+    @comment.reload
+    respond_to do |format|
+      format.html { redirect_to topic_post_path(@comment.post.topic, @comment.post) }
+      format.js
+    end
   end
 
   def new

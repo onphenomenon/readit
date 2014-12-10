@@ -12,8 +12,8 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :favorites
-  validates :title, length: { maximum: 255 }
-  validates :description, length: { maximum: 65_535 }
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :description, presence: true,  length: { maximum: 65_535 }
   mount_uploader :image, ImageUploader
   # validates :rank, numericality: true
 end

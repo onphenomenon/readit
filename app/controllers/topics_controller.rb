@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-    my_save(@topic, topics_path, new_topic_path)
+    my_save(@topic, topics_path)
   end
 
   def new
@@ -17,19 +17,20 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @posts = @topic.posts.active
+    posts = @topic.posts.active.order('rank desc')
+    @posts = posts.paginate(:page => params[:page], :per_page => 5)
     @post = Post.new
   end
 
   def destroy
-    my_destroy(@topic, topics_path, topic_path)
+    my_destroy(@topic, topics_path)
   end
 
   def edit
   end
 
   def update
-    my_update(@topic, @topic, :edit)
+    my_update(@topic, topic_params, @topic)
   end
 
   private

@@ -16,7 +16,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(post: @post) # mass assignment
     @vote.value = user_value
     @vote.user = current_user
-    my_save(@vote, topic_post_path(@post.topic, @post), topic_post_path(@post.topic, @post))
+    my_save(@vote, topic_post_path(@post.topic, @post))
   end
 
   def get_post

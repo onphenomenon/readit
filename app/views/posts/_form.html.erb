@@ -1,8 +1,4 @@
-<div class="row error">
-  <div class="small-12 text-center columns">
-      <div class="alert-box alert"><%= error_msg(@post) %></div>
-  </div>
-</div>
+<%= red_error_box(@post) %>
 <h3>New Post for <%= @topic.title %></h3>
 <%= form_for [@topic, @post], :html => {:multipart => true} do |f| %>
 <%= f.label :title %>

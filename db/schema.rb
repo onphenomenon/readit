@@ -101,8 +101,6 @@ ActiveRecord::Schema.define(version: 20141204011008) do
     t.integer  "status",     limit: 1, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "up"
-    t.boolean  "down"
   end
 
   add_index "votes", ["post_id"], name: "votes_post_id_fk", using: :btree

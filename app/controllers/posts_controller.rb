@@ -22,7 +22,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.active
+    comments = @post.comments.active
+    @comments = comments.paginate(:page => params[:page], :per_page => 3)
     @comment = Comment.new post_id: @post.id
     @score = @post.votes.pluck(:value).compact.sum
   end

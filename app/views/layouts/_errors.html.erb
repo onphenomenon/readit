@@ -1,0 +1,21 @@
+<%= crud_links(@topic) %>
+
+    # binding.pry
+    return '<td>&nbsp</td>'.html_safe if current_user.nil? || !current_user.is_admin?
+
+<td><%= link_to 'Modify', [:edit, object]} %></td>
+<td><%= link_to 'Trash', object, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    links.html_safe
+  end
+
+
+<%= red_error_box(@topic) %>
+<%= form_for @topic, :html => {:multipart => true} do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.file_field :image %>
+  <%= f.submit 'Save' %>
+<% end %>

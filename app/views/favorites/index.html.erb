@@ -1,12 +1,11 @@
 <h2> Favorites Index </h2>
-
-
-  <% @favorites.each do |favorite| %>
+  <% @favorites.each do |fav| %>
     <div class="row">
       <div class="small-10 small-offset-2 columns">
-        <h3><%= favorite.post.title %></h3>
-        <h4><%= favorite.post.description %></h4>
-        <td><%= link_to "Destroy", favorite, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <h3><%= fav.post.title %></h3>
+        <h4><%= fav.post.description %></h4>
+
+        <td><%= link_to "Destroy", favorites_index_path(id: fav.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </div>
     </div>
   <% end %>

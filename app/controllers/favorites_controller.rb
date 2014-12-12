@@ -1,9 +1,8 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :params_exist
+  before_action :params_exist, only: [:create]
 
   def index
-
     @favorites = current_user.favorites.active
   end
 
@@ -13,14 +12,9 @@ class FavoritesController < ApplicationController
     my_save(@favorite, topic_post_path(@post.topic, @post))
   end
 
-
-  def show
-    @favorite = current_user.favorites.where(favorites: {id: params[:id] }).first
-  end
-
   def destroy
     @favorite = Favorite.find(params[:id])
-    my_destroy(@favorite, favorites_path)
+    my_destroy(@favorite, favorites_index_path)
   end
 
   private

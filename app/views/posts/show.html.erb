@@ -1,38 +1,34 @@
-<div class="row">
-    <div class="small-4 small-offset-3 columns">
-    <%= link_to "Topic", topic_path(@post.topic) %>
-    	<h2><%= @post.title %></h2>
-      <%= @post.rank.to_i %> Rank
-      <%= image_tag @post.image_url.to_s %>
-    	<td><%= @post.description %></td>
-      <%= crud_post(@post) %>
-      <%= vote_link(@post) %>
+<div class="row show-topics">
+  <div class="small-10 small-centered columns">
+
+    <div class="row">
+        <div class="small-6 columns">
+        <%= link_to @post.topic.title, topic_path(@post.topic) %>
+        	<h2><%= @post.title %></h2><%= @post.rank.to_i %> Rank
+          <div><%= image_tag @post.image_url.to_s %></div>
+        	<td><%= @post.description %></td>
+          <%= crud_post(@post) %>
+          <%= vote_link(@post) %>
+        </div>
 
 
+        <div class="small-6 columns">
+          <h5 id='comments_count'><%= pluralize(@comments.count, 'Comment') %></h5>
+          <div class="comments" id="comment_scroll">
+          <% @comments.each do |comment| %>
+            <%= render partial: 'comments/comment', locals: { comment: comment } %>
+          <% end %>
+          </div>
+
+          <div style="border-top-style: dotted"></div>
+            <h3>Add Comment</h3>
+              <%= new_comment(@post) %>
+          </div>
+              <br class="clear" />
+          </div>
+        </div>
     </div>
-</div>
 
-<div style="border-top-style: dotted"></div>
-  <div class="row">
-    <div class="small-10 small-offset-3 columns">
-      <h5 id='comments_count'><%= pluralize(@comments.count, 'Comment') %></h5>
-      <div class="comments" id="comment_scroll">
-      <% @comments.each do |comment| %>
-        <%= render partial: 'comments/comment', locals: { comment: comment } %>
-      <% end %>
-      </div>
-    </div>
+
   </div>
-
-<div style="border-top-style: dotted"></div>
-<div class="row">
-  <div class="small-10 small-offset-3 centered columns">
-
-      <h3>Add Comment</h3>
-      <%= link_to "New Comment", new_comment_path(:post_id => @post.id), id: "new_comment_link", remote: true %>
-    </div>
-    <br class="clear" />
 </div>
-
-
-

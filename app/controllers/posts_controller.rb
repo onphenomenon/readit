@@ -22,11 +22,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    # if params[:topic_id].blank?  # implies /posts/Y, no params[:topic_id]
-    # return redirect_to [@post.topic, @post]
-    # end
-
-    # implies /topic/X/posts/Y
     @comments = @post.comments.active
     @comment = Comment.new post_id: @post.id
     @score = @post.votes.pluck(:value).compact.sum

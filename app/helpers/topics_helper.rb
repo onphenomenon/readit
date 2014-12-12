@@ -1,7 +1,7 @@
 module TopicsHelper
   def crud_links(object)
     # binding.pry
-    return '<td> </td>'.html_safe if current_user.nil? || !current_user.is_admin?
+    return '<td>&nbsp</td>'.html_safe if current_user.nil? || !current_user.is_admin?
     links = ''
     links += "<td>#{ link_to 'Modify', [:edit, object]}</td> "
     links += "<td>#{link_to 'Trash', object, method: :delete, data: { confirm: 'Are you sure?' }}</td>"
@@ -23,5 +23,14 @@ module TopicsHelper
     links.html_safe
   end
 
+  def topic_index(object)
+    links = ''
+    links << "<div class='button success radius'>#{ link_to "All Topics", topics_path(object) }</div>"
+    links.html_safe
+  end
+
+  def shorten(object)
+    truncate(object, length: 200)
+  end
 
 end

@@ -4,7 +4,7 @@ module ApplicationHelper
     add = ''
 
     object.errors.full_messages.each do |msg|
-      add << "<tr>#{msg}</tr>"
+      add << "<tr>#{msg}.&nbsp</tr>"
     end
     add.html_safe
   end

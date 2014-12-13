@@ -52,6 +52,8 @@ gem 'devise'
 # Handle uploads
 gem 'carrierwave'
 
+gem 'rails_stdout_logging'
+gem 'rails_serve_static_assets'
 
 group :development, :test do
   gem 'pry'

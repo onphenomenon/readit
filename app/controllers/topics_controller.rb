@@ -19,7 +19,6 @@ class TopicsController < ApplicationController
   def show
     posts = @topic.posts.active.order('rank desc')
     @posts = posts.paginate(:page => params[:page], :per_page => 5)
-    @post = Post.new
   end
 
   def destroy
@@ -40,8 +39,8 @@ class TopicsController < ApplicationController
   end
 
   def get_topic
-    @topic = Topic.where(id: params[:id]).first
-    if @topic == nil
+    @topic = Topic.active.where(id: params[:id]).first
+    if @topic.nil?
       flash[:error] = "Topic does not exist"
       redirect_to topics_path
     end

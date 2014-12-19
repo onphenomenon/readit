@@ -9,12 +9,12 @@ class FavoritesController < ApplicationController
   def create
     @post = Post.find(favorite_params[:post_id])
     @favorite = Favorite.new user: current_user, post: @post
-    my_save(@favorite, topic_post_path(@post.topic, @post))
+    my_save(@favorite, favorites_path)
   end
 
   def destroy
     @favorite = Favorite.find(params[:id])
-    my_destroy(@favorite, favorites_index_path)
+    my_destroy(@favorite, favorites_path)
   end
 
   private

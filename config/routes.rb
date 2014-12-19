@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root to: 'topics#index'
-  get '/favorites/create', to: 'favorites#create'
-  get '/favorites/index', to: 'favorites#index'
-  delete '/favorites/:id', to: 'favorites#destroy'
+  resources :favorites, only: [:create, :index, :destroy]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   get '/users/comments', to: 'users#comments'

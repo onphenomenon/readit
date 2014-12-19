@@ -5,7 +5,8 @@
         <h3><%= fav.post.title %></h3>
         <h4><%= fav.post.description %></h4>
 
-        <td><%= link_to "Destroy", favorites_index_path(id: fav.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to "Destroy", fav, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+
       </div>
     </div>
   <% end %>

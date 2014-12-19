@@ -13,7 +13,7 @@ module PostsHelper
     return unless current_user
     return unless current_user.favorites.where(post_id: post.id).empty?
 
-    "<div>#{ link_to "Add Post to Favorites", favorites_create_path(favorite: { post_id: post.id } )}</div>"
+    "<div>#{ link_to "Add Post to Favorites", favorites_path(favorite: { post_id: post.id }), method: :post }</div>"
   end
 
   def crud_post(object)
@@ -42,4 +42,3 @@ module PostsHelper
     "<li class='button tiny secondary'>#{ link_to 'delete', comment, method: :delete, data: {confirm: 'Are you sure?'} }</li>".html_safe
   end
 end
-color="red"

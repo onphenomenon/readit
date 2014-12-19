@@ -61,7 +61,7 @@ def nav(object)
         <a href='#'>Profile</a>
         <ul class='dropdown'>
           <li>#{ link_to 'Edit Profile', edit_user_registration_path }</li>
-          <li>#{ link_to 'Favorites', favorites_index_path }</li>
+          <li>#{ link_to 'Favorites', favorites_path }</li>
           <li>#{ link_to 'User Posts', users_comments_path }</li>
           <li>#{ link_to 'User Comments', users_posts_path }</li>
         </ul>

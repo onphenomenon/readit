@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def posts
-    @posts = Post.where(user_id: current_user)
+    @posts = Post.active.where(user_id: current_user)
+
   end
 
   def comments

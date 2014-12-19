@@ -1,4 +1,16 @@
-<% @comments.each do |comment| %>
-<%= comment.post.title %>
-<%= comment.description %>
-<% end %>
+<div class="row">
+  <div class="small 8 small-centered columns">
+    <h2>My Comments</h2>
+    <div class="row">
+        <div class="small-6 columns">
+          <h5 id='comments_count'><%= pluralize(@comments.count, 'Comment') %></h5>
+          <div class="comments" id="comment_scroll">
+          <% @comments.each do |comment| %>
+            <h3><%= comment.post.title %></h3>
+            <h3><%= comment.description %></h3>
+              <%= crud_comment(comment) %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

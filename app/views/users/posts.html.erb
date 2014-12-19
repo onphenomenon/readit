@@ -1,6 +1,21 @@
-<% @posts.each do |post| %>
-<%= post.topic.title %>
-<%= post.title %>
-<%= post.description %>
-<% end %>
+<div class="row">
+  <div class="small 8 small-centered columns">
+    <h2>My Posts</h2>
+    <div class="row">
 
+        <% @posts.each do |post| %>
+          <section class="row post-list">
+            <div class="small-6 columns">
+
+              <h3><%= post.rank.to_i %>&nbsp<%= link_to post.title, topic_post_path(post.topic, post) %></h3>
+              <h5><%= post.created_at.strftime("%d %b. %Y") %><%= vote_link(post) %></h5><%= image_tag post.image_url.to_s %><%= crud_post(post) %>
+            </div>
+            <div class="small-6 columns">
+
+              <h4><%= shorten(post.description) %></h4>
+            </div>
+          </section>
+        <% end %>
+    </div>
+  </div>
+</div>

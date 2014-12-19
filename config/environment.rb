@@ -5,7 +5,7 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 
-config.action_mailer.default_url_options = { :host => 'stark-island-6247.herokuapp.com' }
+
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
